@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Churn Prediction</title>
+    <link rel="stylesheet" href="web.css">
+</head>
+<body>
+    <h1>Churn Prediction</h1>
+    <form method="post" action="/predict">
+        <label>Tenure</label>
+        <input type="text" name="tenure" required><br>
+
+        <label>Monthly Charges</label>
+        <input type="text" name="MonthlyCharges" required><br>
+
+        <label>Total Charges</label>
+        <input type="text" name="TotalCharges" required><br>
+
+        <label>InternetService</label>
+        <input type="text" name="InternetService" required><br>
+
+        <label>OnlineSecurity</label>
+        <input type="text" name="OnlineSecurity" required><br>
+
+        <label>Device Protection</label>
+        <input type="text" name="DeviceProtection" required><br>
+
+        <label>Streaming Tv</label>
+        <input type="text" name="StreamingTV" required><br>
+
+        <label>TechSupport</label>
+        <input type="text" name="TechSupport" required><br>
+
+        <label>Contract</label>
+        <input type="text" name="Contract " required><br>
+
+        <label>PaymentMethod</label>
+        <input type="text" name="PaymentMethod" required><br>
+
+        <input type="submit" value="Predict">
+    </form>
+    <div class="prediction-result" id="predictionResult">
+        <form class="prediction-box" id="predictionForm">
+            <h2 id="predictionValue"></h2>
+            <p id="inputValues"></p>
+            <!-- You can add more form elements if needed -->
+            <button type="button" onclick="resetPrediction()">Reset Prediction</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('churnForm');
+            const predictionResult = document.getElementById('predictionResult');
+            const predictionValue = document.getElementById('predictionValue');
+            const inputValues = document.getElementById('inputValues');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                // Get input values
+                const tenure = document.querySelector('input[name="tenure"]').value;
+                const monthlyCharges = document.querySelector('input[name="MonthlyCharges"]').value;
+                const totalCharges = document.querySelector('input[name="TotalCharges"]').value;
+                const InternetService = document.querySelector('input[name="InternetService"]').value;
+                const OnlineSecurity = document.querySelector('input[name="OnlineSecurity"]').value;
+                const TechSupport = document.querySelector('input[name="TechSupport"]').value;
+                const StreamingMovies = document.querySelector('input[name="StreamingMovies"]').value;
+                const Contract = document.querySelector('input[name="Contract"]').value;
+                const PaymentMethod = document.querySelector('input[name="PaymentMethod"]').value;
+                
+
+                // Add logic to fetch prediction result from your server/API
+                const prediction = 'Churn Prediction: High'; // Replace with actual prediction
+
+                // Update and show the result section
+                predictionValue.textContent = prediction;
+                inputValues.textContent = `Input Values: Tenure - ${tenure}, Monthly Charges - ${monthlyCharges}, Total Charges - ${totalCharges}`; // Add more inputs as needed
+                predictionResult.style.display = 'block';
+            });
+        });
+    </script>
+    
+</body>
+</html>
